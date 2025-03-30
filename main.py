@@ -11,8 +11,10 @@ print("********************************\n"
 "1. PRINT all Authorized Vehicles\n"
 "2. Exit")
 
+#Get User Input
 menuSelect = input()
 
+#Convert input to integer and evaluate
 if int(menuSelect) == 1:
     print("The AutoCountry sales manager has authorized the purchase and selling of the following vehicles: ")
     for vehicle in AllowedVehiclesList:
