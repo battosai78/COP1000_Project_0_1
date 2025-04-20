@@ -1,4 +1,4 @@
-#Initialize Input variable
+#Initialize Input variables
 menuSelect = 0  
 newVehicle = None
 AllowedVehiclesList = None
