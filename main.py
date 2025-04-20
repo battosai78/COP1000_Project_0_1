@@ -4,6 +4,47 @@ newVehicle = None
 AllowedVehiclesList = None
 removeVehicle = None
 confirmRemove = None
+#Create Functions
+#Function for printing authorized vehicles
+def printVehicles():
+    AllowedVehiclesList = open("AllowedVehiclesList.txt","r")
+    print("The AutoCountry sales manager has authorized the purchase and selling of the following vehicles: \n")
+    for vehicle in AllowedVehiclesList:
+        print(vehicle)
+    AllowedVehiclesList.close
+
+#Function for searching authorized vehicles
+def searchVehicles():
+    AllowedVehiclesList = open("AllowedVehiclesList.txt","r")
+    vehicleSearch = input("Please Enter the full Vehicle name: \n")    
+    if vehicleSearch in AllowedVehiclesList:
+        print(vehicleSearch + " is an authorized vehicle")
+    else:
+        print(vehicleSearch + " is not an authorized vehicle, if you received this in error please check the spelling and try again")
+    AllowedVehiclesList.close            
+#Function for adding authorized vehicles
+def addVehicles():
+    AllowedVehiclesList = open("AllowedVehiclesList.txt","a")
+    newVehicle = input("Enter the full Vehicle name you would like to add: \n")
+    AllowedVehiclesList.write("\n" + newVehicle)   
+    print("You have added " + newVehicle + " as an authorized vehicle")
+    AllowedVehiclesList.close
+#Function for deleting authorized vehicles
+def deleteVehicles():
+    AllowedVehiclesList = open("AllowedVehiclesList.txt","r")
+    removeVehicle = input("Enter the full Vehicle name you would like to remove: \n")
+    lines = AllowedVehiclesList.readlines()
+    confirmRemove = input("Are you sure you want to remove " + removeVehicle + " from the Authorized Vehicle List?\n")
+    if confirmRemove == "yes":
+        AllowedVehiclesList = open("AllowedVehiclesList.txt","w")
+        for line in lines:
+            if line != removeVehicle:
+                AllowedVehiclesList.write(line)
+    else:
+        return
+    print("You have REMOVED " + removeVehicle + " as an authorized vehicle")
+
+
 while int(menuSelect) != 5:
     #Present Menu
     print("********************************\n"
@@ -20,37 +61,12 @@ while int(menuSelect) != 5:
     menuSelect = input()
     #Convert input to integer and evaluate
     if int(menuSelect) == 1:
-        AllowedVehiclesList = open("AllowedVehiclesList.txt","r")
-        print("The AutoCountry sales manager has authorized the purchase and selling of the following vehicles: \n")
-        for vehicle in AllowedVehiclesList:
-            print(vehicle)
-        AllowedVehiclesList.close    
+        printVehicles()
     elif int(menuSelect) == 2:
-        AllowedVehiclesList = open("AllowedVehiclesList.txt","r")
-        vehicleSearch = input("Please Enter the full Vehicle name: \n")
-        if vehicleSearch in AllowedVehiclesList:
-            print(vehicleSearch + " is an authorized vehicle")
-        else:
-            print(vehicleSearch + " is not an authorized vehicle, if you received this in error please check the spelling and try again")
-            AllowedVehiclesList.close
+        searchVehicles()
     elif int(menuSelect) == 3:
-        AllowedVehiclesList = open("AllowedVehiclesList.txt","a")
-        newVehicle = input("Enter the full Vehicle name you would like to add: \n")
-        AllowedVehiclesList.write("\n" + newVehicle)   
-        print("You have added " + newVehicle + " as an authorized vehicle")
-        AllowedVehiclesList.close
+        addVehicles()
     elif int(menuSelect) == 4:
-        AllowedVehiclesList = open("AllowedVehiclesList.txt","r")
-        removeVehicle = input("Enter the full Vehicle name you would like to remove: \n")
-        lines = AllowedVehiclesList.readlines()
-        confirmRemove = input("Are you sure you want to remove " + removeVehicle + " from the Authorized Vehicle List?\n")
-        if confirmRemove == "yes":
-            AllowedVehiclesList = open("AllowedVehiclesList.txt","w")
-            for line in lines:
-                if line != removeVehicle:
-                    AllowedVehiclesList.write(line)
-        else:
-            continue
-        print("You have REMOVED " + removeVehicle + " as an authorized vehicle")   
+        deleteVehicles()
 print("Thank you for using the AutoCountry Vehicle Finder, good-bye!")
 exit
