@@ -48,7 +48,7 @@ def deleteVehicles():
 while int(menuSelect) != 5:
     #Present Menu
     print("********************************\n"
-    "AutoCountry Vehicle Finder v0.4\n"
+    "AutoCountry Vehicle Finder v1.0\n"
     "********************************\n"
     "Please Enter the following number below from the following menu:\n\n"
     "1. PRINT all Authorized Vehicles\n"
